@@ -1,3 +1,3 @@
 module.exports = {
-    wallpaperDirectory: "D:\\Images\\Wallpapers"
+    wallpaperDirectory: "your path"
 }
