@@ -19,8 +19,8 @@ Clone the project
 Install the project with npm
 
 ```bash
-    cd ./WallpaperTool
-    npm install
+  cd ./WallpaperTool
+  npm install
 ```
 
 ## Run Locally
