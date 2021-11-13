@@ -17,30 +17,44 @@ const fs = require("fs");
 class JsonReader {
 
      constructor(path) {
-         this.parsedJson = this.readJson(path);
+         this.path = path;
      }
 
      readJson(path) {
           let json = fs.readFileSync(path, 'utf8');
-          if (!json) {
-               throw new Error("File not found");
-          }
-          return JSON.parse(json);
+          return new Promise((resolve, reject) => {
+               try {
+                   if (json){
+                       resolve(JSON.parse(json));
+                   } else {
+                       reject(new Error("File not found"));
+                   }
+               } catch (e) {
+                    reject(e);
+               }
+          });
      }
 
      // method getJson
-     getJson() {
-          return this.parsedJson;
+     async getJson() {
+         this.parsedJson = await this.readJson(this.path);
+         console.log(this.parsedJson);
+         return this.parsedJson;
      }
 
      // method getJsonByKey
-    getJsonByKey(key) {
+     async getJsonByKey(key) {
+         this.parsedJson = await this.readJson(this.path);
          if (this.parsedJson[key]) {
              return this.parsedJson[key];
          }else{
              throw new Error("Key not found");
          }
+     }
 
+     checkIfFileIsNotEmpty(json){
+         let JSON = json ? json : fs.readFileSync(this.path, 'utf8');
+         return JSON.length === 0;
      }
 
 }

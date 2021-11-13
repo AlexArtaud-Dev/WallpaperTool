@@ -7,7 +7,7 @@ class JsonWriter {
     }
 
     write(data) {
-        fs.writeFileSync(this.filePath, JSON.stringify(data));
+        fs.writeFileSync(this.filePath, JSON.stringify(data))
     }
 
 }

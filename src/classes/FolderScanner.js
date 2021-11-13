@@ -15,7 +15,7 @@ class FolderScanner {
                     // create a new array to store the files absolute path with the first three letters of the file name as the key
                     let filesMap = {};
                     files.forEach(file => {
-                        filesMap[file.substring(0, 3)] = this.path + "/" + file;
+                        filesMap[file.split(".")[0]] = this.path + "/" + file;
                     });
                     resolve(filesMap);
                 }
